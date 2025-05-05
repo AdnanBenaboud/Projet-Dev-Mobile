@@ -1,18 +1,22 @@
 package com.example.projetdevmobile;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.core.view.WindowInsetsCompat.Type;
-import androidx.core.graphics.Insets;
-
+import android.Manifest;
+import android.widget.Toast;
 
 import com.mapbox.geojson.Point;
 import com.mapbox.maps.CameraOptions;
 import com.mapbox.maps.MapView;
+import com.mapbox.maps.Style;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,22 +28,50 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            androidx.core.graphics.Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    1); // 1 is requestCode
+        }
 
         mapView = findViewById(R.id.mapView);
 
+        mapView.getMapboxMap().loadStyleUri(Style.MAPBOX_STREETS, style -> {
+            // Do something after the style is loaded
+            Toast.makeText(this, "Map Style Loaded", Toast.LENGTH_SHORT).show();
+        });
+
         // Set initial camera position
         CameraOptions cameraOptions = new CameraOptions.Builder()
-                .center(Point.fromLngLat(-98.0, 39.5))
+                .center(Point.fromLngLat(-5.894187, 35.736253))
                 .pitch(0.0)
-                .zoom(2.0)
+                .zoom(17.0)
                 .bearing(0.0)
                 .build();
 
         mapView.getMapboxMap().setCamera(cameraOptions);
+
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, proceed
+                Toast.makeText(this, "Location permission granted", Toast.LENGTH_SHORT).show();
+            } else {
+                // Permission denied, show a message
+                Toast.makeText(this, "Location permission rejected", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
