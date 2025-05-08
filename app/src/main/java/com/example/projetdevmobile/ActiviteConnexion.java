@@ -2,6 +2,8 @@ package com.example.projetdevmobile;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +22,9 @@ public class ActiviteConnexion extends AppCompatActivity {
     private TextInputLayout texteEmail, texteMotDePasse;
     private MaterialButton boutonConnexion;
 
+    private Button boutonInscription;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +37,16 @@ public class ActiviteConnexion extends AppCompatActivity {
         texteEmail = findViewById(R.id.texteEmail);
         texteMotDePasse = findViewById(R.id.texteMotDePasse);
         boutonConnexion = findViewById(R.id.boutonConnexion);
+        boutonInscription = findViewById(R.id.bouton_inscription);
 
         boutonConnexion.setOnClickListener(v -> seConnecter());
+        boutonInscription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActiviteConnexion.this, ActiviteInscription.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void seConnecter() {
@@ -67,6 +80,8 @@ public class ActiviteConnexion extends AppCompatActivity {
         super.onStart();
         FirebaseUser utilisateurActuel = auth.getCurrentUser();
         if (utilisateurActuel != null) {
+            Toast.makeText(ActiviteConnexion.this, "Authentification réussie", Toast.LENGTH_LONG).show();
+
             startActivity(new Intent(ActiviteConnexion.this, MainActivity.class));
             finish();
         }
