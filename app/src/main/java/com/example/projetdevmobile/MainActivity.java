@@ -1,5 +1,6 @@
 package com.example.projetdevmobile;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import android.Manifest;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.mapbox.geojson.Point;
@@ -21,6 +23,10 @@ import com.mapbox.maps.Style;
 public class MainActivity extends AppCompatActivity {
 
     private MapView mapView;
+
+
+//    Login Button
+    private Button loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +65,17 @@ public class MainActivity extends AppCompatActivity {
         mapView.getMapboxMap().setCamera(cameraOptions);
 
 
+        loginButton = findViewById(R.id.login);
+//        Code for the login button
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ActiviteConnexion.class);
+                startActivity(intent);
+            }
+        });
+
+/// ////////////////////////////////////////////////////////////////////////
     }
 
     @Override
