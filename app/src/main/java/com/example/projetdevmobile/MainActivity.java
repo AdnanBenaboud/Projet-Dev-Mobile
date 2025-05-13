@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         mapView.getMapboxMap().setCamera(cameraOptions);
 
 
+
         loginButton = findViewById(R.id.login);
 //        Code for the login button
         loginButton.setOnClickListener(new View.OnClickListener() {
