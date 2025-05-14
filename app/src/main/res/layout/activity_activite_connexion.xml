@@ -13,7 +13,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:hint="Email"
+        android:hint="Email (use admin@admin.com to test)"
+
         android:padding="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -30,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@id/texteEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:hint="Mot de Passe"
+        android:hint="Mot de Passe (use 123456 to test)"
         android:padding="16dp">
 
         <com.google.android.material.textfield.TextInputEditText

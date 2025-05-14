@@ -49,6 +49,10 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation("com.mapbox.maps:android:11.11.0")
+//    implementation("com.mapbox.mapboxsdk:mapbox-sdk-geojson:7.4.0")
+//    implementation("com.mapbox.mapboxsdk:mapbox-sdk-core:7.4.0")
+    // https://mvnrepository.com/artifact/com.mapbox.mapboxsdk/mapbox-android-sdk
+//    implementation("com.mapbox.mapboxsdk:mapbox-android-sdk:8.6.7")
 
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.13.0"))

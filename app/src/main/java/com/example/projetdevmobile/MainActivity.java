@@ -5,6 +5,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -14,18 +15,25 @@ import android.Manifest;
 import android.widget.Button;
 import android.widget.Toast;
 
+
 import com.mapbox.geojson.Point;
 import com.mapbox.maps.CameraOptions;
 import com.mapbox.maps.MapView;
 import com.mapbox.maps.Style;
 
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+
 public class MainActivity extends AppCompatActivity {
 
     private MapView mapView;
 
+    FirebaseAuth auth;
 
-//    Login Button
+
+    //    Login Button
     private Button loginButton;
 
     @Override
@@ -69,19 +77,20 @@ public class MainActivity extends AppCompatActivity {
         mapView.getMapboxMap().setCamera(cameraOptions);
 
 
+        /// ////////////////////////////////////////////////////////////////////////
+        // check if user already signed in
+        auth = FirebaseAuth.getInstance();
 
-        loginButton = findViewById(R.id.login);
-//        Code for the login button
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ActiviteConnexion.class);
-                startActivity(intent);
-            }
-        });
 
-/// ////////////////////////////////////////////////////////////////////////
+        FirebaseUser utilisateurActuel = auth.getCurrentUser();
+        if (utilisateurActuel != null) {
+        }
+        else{
+            Intent intent = new Intent(MainActivity.this, ActiviteConnexion.class);
+            startActivity(intent);
+        }
 
+//        ////////////////////////////////////////////////////////////////////////
     }
 
     @Override
