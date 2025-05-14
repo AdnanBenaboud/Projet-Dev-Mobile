@@ -18,6 +18,7 @@ import com.mapbox.geojson.Point;
 import com.mapbox.maps.CameraOptions;
 import com.mapbox.maps.MapView;
 import com.mapbox.maps.Style;
+import com.mapbox.maps.extension.style.sources.generated.GeoJsonSource;
 
 
 public class MainActivity extends AppCompatActivity {
