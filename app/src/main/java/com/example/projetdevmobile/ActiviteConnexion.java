@@ -17,12 +17,14 @@ import com.google.android.material.button.MaterialButton;
 public class ActiviteConnexion extends AppCompatActivity {
     private static final String TAG = "EmailPassword";
 
+
     private FirebaseAuth auth;
     private TextInputEditText editionEmail, editionMotDePasse;
     private TextInputLayout texteEmail, texteMotDePasse;
     private MaterialButton boutonConnexion;
 
     private Button boutonInscription;
+    private Button boutonoffline;
 
 
     @Override
@@ -38,12 +40,21 @@ public class ActiviteConnexion extends AppCompatActivity {
         texteMotDePasse = findViewById(R.id.texteMotDePasse);
         boutonConnexion = findViewById(R.id.boutonConnexion);
         boutonInscription = findViewById(R.id.bouton_inscription);
+        boutonoffline =  findViewById(R.id.button_offline);
 
         boutonConnexion.setOnClickListener(v -> seConnecter());
         boutonInscription.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ActiviteConnexion.this, ActiviteInscription.class);
+                startActivity(intent);
+            }
+        });
+
+        boutonoffline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ActiviteConnexion.this, MainActivity.class);
                 startActivity(intent);
             }
         });
