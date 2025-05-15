@@ -89,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         mapView.getMapboxMap().setCamera(cameraOptions);
-        GesturesPlugin gesturesPlugin = mapView.getPlugin("mapbox-gestures");
 
 
 
@@ -97,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Map Style Loaded", Toast.LENGTH_SHORT).show();
 
             // Kotlin call from Java
-            GeoJsonHelper.addGeoJsonLayer(style, this, "FSTT.geojson");
+            GeoJsonHelper.addGeoJsonLayer(mapView, style, this, "FSTT.geojson");
         });
 
 

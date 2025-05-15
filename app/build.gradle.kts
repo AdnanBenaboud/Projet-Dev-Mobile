@@ -50,32 +50,17 @@ dependencies {
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.firebase.auth)
     implementation(libs.core.ktx)
+    implementation(libs.asynclayoutinflater)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation ("com.mapbox.maps:android:11.11.0")
-
-//    implementation("com.mapbox.mapboxsdk:mapbox-sdk-geojson:7.4.0")
-//    implementation("com.mapbox.mapboxsdk:mapbox-sdk-core:7.4.0")
-    // https://mvnrepository.com/artifact/com.mapbox.mapboxsdk/mapbox-android-sdk
-//    implementation("com.mapbox.mapboxsdk:mapbox-android-sdk:8.6.7")
-
-    // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.13.0"))
-
-
-    // TODO: Add the dependencies for Firebase products you want to use
-    // When using the BoM, don't specify versions in Firebase dependencies
-    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.android.gms:play-services-measurement-impl:22.1.2")
+    implementation(platform("com.google.firebase:firebase-bom:32.3.0"))
     implementation("com.google.firebase:firebase-auth")
-    // Declare the dependency for the Cloud Firestore library
-    // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.android.gms:play-services-gcm:17.0.0")
 
-
-
-    // Add the dependencies for any other desired Firebase products
-    // https://firebase.google.com/docs/android/setup#available-libraries
 }
 
