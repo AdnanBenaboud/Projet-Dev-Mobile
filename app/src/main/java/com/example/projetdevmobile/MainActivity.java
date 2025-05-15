@@ -3,6 +3,7 @@ package com.example.projetdevmobile;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -16,14 +17,25 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
+import com.mapbox.bindgen.Expected;
+import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.Point;
 import com.mapbox.maps.CameraOptions;
 import com.mapbox.maps.MapView;
+import com.mapbox.maps.QueriedFeature;
+import com.mapbox.maps.QueryRenderedFeaturesCallback;
+import com.mapbox.maps.RenderedQueryGeometry;
+import com.mapbox.maps.RenderedQueryOptions;
+import com.mapbox.maps.ScreenCoordinate;
 import com.mapbox.maps.Style;
 
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.mapbox.maps.plugin.gestures.GesturesPlugin;
+
+import java.util.Collections;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     private MapView mapView;
 
     FirebaseAuth auth;
+
+    static int tried = 0;
 
 
     //    Login Button
@@ -75,6 +89,18 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         mapView.getMapboxMap().setCamera(cameraOptions);
+        GesturesPlugin gesturesPlugin = mapView.getPlugin("mapbox-gestures");
+
+
+
+        mapView.getMapboxMap().loadStyleUri(Style.MAPBOX_STREETS, style -> {
+            Toast.makeText(this, "Map Style Loaded", Toast.LENGTH_SHORT).show();
+
+            // Kotlin call from Java
+            GeoJsonHelper.addGeoJsonLayer(style, this, "FSTT.geojson");
+        });
+
+
 
 
         /// ////////////////////////////////////////////////////////////////////////
@@ -83,9 +109,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         FirebaseUser utilisateurActuel = auth.getCurrentUser();
-        if (utilisateurActuel != null) {
+        if (utilisateurActuel != null || tried!=0) {
         }
         else{
+            tried=1;
             Intent intent = new Intent(MainActivity.this, ActiviteConnexion.class);
             startActivity(intent);
         }

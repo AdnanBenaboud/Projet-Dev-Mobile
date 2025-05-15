@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     id("com.google.gms.google-services")
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
@@ -33,6 +34,9 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    kotlinOptions {
+        jvmTarget = "11"
+    }
 }
 
 dependencies {
@@ -45,10 +49,12 @@ dependencies {
     implementation(libs.lifecycle.livedata.ktx)
     implementation(libs.lifecycle.viewmodel.ktx)
     implementation(libs.firebase.auth)
+    implementation(libs.core.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation("com.mapbox.maps:android:11.11.0")
+    implementation ("com.mapbox.maps:android:11.11.0")
+
 //    implementation("com.mapbox.mapboxsdk:mapbox-sdk-geojson:7.4.0")
 //    implementation("com.mapbox.mapboxsdk:mapbox-sdk-core:7.4.0")
     // https://mvnrepository.com/artifact/com.mapbox.mapboxsdk/mapbox-android-sdk
@@ -72,3 +78,4 @@ dependencies {
     // Add the dependencies for any other desired Firebase products
     // https://firebase.google.com/docs/android/setup#available-libraries
 }
+
