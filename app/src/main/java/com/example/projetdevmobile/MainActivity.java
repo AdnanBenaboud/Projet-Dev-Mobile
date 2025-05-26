@@ -76,8 +76,6 @@ public class MainActivity extends AppCompatActivity {
         mapView = findViewById(R.id.mapView);
 
         mapView.getMapboxMap().loadStyleUri(Style.MAPBOX_STREETS, style -> {
-            // Do something after the style is loaded
-            Toast.makeText(this, "Map Style Loaded", Toast.LENGTH_SHORT).show();
         });
 
         // Set initial camera position
@@ -96,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Map Style Loaded", Toast.LENGTH_SHORT).show();
 
             // Kotlin call from Java
-            GeoJsonHelper.addGeoJsonLayer(mapView, style, this, "FSTT.geojson");
+            GeoJsonHelper.addGeoJsonLayer(mapView, style, this, "Final_FSTT_Geojson.geojson");
         });
 
 

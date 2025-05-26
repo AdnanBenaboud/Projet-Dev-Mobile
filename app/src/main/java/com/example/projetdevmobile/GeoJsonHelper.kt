@@ -43,7 +43,6 @@ object GeoJsonHelper {
             val featureCollection = FeatureCollection.fromJson(geoJsonString)
 
             val featureCount = featureCollection.features()?.size ?: 0
-            Log.d(TAG, "Feature count: $featureCount")
             Toast.makeText(context, "Loaded $featureCount features from GeoJSON", Toast.LENGTH_SHORT).show()
 
             val sourceId = "geojson-source"
@@ -55,17 +54,14 @@ object GeoJsonHelper {
                 }
             )
 
-            Log.d(TAG, "Source added")
 
             style.addLayer(
                 fillLayer(layerId, sourceId) {
-                    fillColor("#ff0000")
+                    fillColor("#3399ff")
                     fillOpacity(0.6)
                     visibility(Visibility.VISIBLE)
                 }
             )
-
-            Log.d(TAG, "Layer added to style")
 
 
 

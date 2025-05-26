@@ -30,7 +30,7 @@ public class splashActviity extends AppCompatActivity {
             public void run() {
                 try {
                     super.run();
-                    sleep(10000);  //Delay of 10 seconds
+                    sleep(5000);  //Delay of 10 seconds
                 } catch (Exception e) {
 
                 } finally {
